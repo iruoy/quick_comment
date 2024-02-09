@@ -1,0 +1,22 @@
+<div {{ attributes }}>
+    <h1>Comments</h1>
+
+    <div>
+        <label for="url">URL</label>
+        <input id="url" data-model="url">
+    </div>
+
+    <br>
+
+    {% if this.comments %}
+        <ul>
+            {% for comment in this.comments %}
+                <li>{{ comment.name }}: {{ comment.comment }} ({{ comment.createdAt.format('Y-m-d H:i:s') }})</li>
+            {% endfor %}
+        </ul>
+
+        <br>
+    {% endif %}
+
+    {{ component('CommentForm', { url: url }) }}
+</div>

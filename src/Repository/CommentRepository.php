@@ -27,7 +27,8 @@ class CommentRepository extends ServiceEntityRepository
     public function findByPostUrl(string $postUrl): array
     {
         return $this->createQueryBuilder('c')
-            ->andWhere('c.postUrl = :postUrl')
+            ->leftJoin('c.post', 'p')
+            ->andWhere('p.url = :postUrl')
             ->setParameter('postUrl', $postUrl)
             ->getQuery()
             ->getResult()

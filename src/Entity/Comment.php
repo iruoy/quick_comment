@@ -13,12 +13,11 @@ class Comment
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    private readonly int $id;
+    private ?int $id = null;
 
-    #[Assert\NotBlank]
-    #[Assert\Length(max: 255)]
-    #[ORM\Column(length: 255)]
-    private ?string $postUrl = null;
+    #[ORM\ManyToOne(inversedBy: 'comments')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Post $post = null;
 
     #[Assert\NotBlank]
     #[Assert\Length(max: 255)]
@@ -34,7 +33,7 @@ class Comment
     private ?string $comment = null;
 
     #[ORM\Column]
-    private readonly \DateTimeImmutable $createdAt;
+    private ?\DateTimeImmutable $createdAt;
 
     public function __construct()
     {
@@ -46,14 +45,14 @@ class Comment
         return $this->id;
     }
 
-    public function getPostUrl(): ?string
+    public function getPost(): ?Post
     {
-        return $this->postUrl;
+        return $this->post;
     }
 
-    public function setPostUrl(string $postUrl): static
+    public function setPost(?Post $post): static
     {
-        $this->postUrl = $postUrl;
+        $this->post = $post;
 
         return $this;
     }
@@ -94,8 +93,15 @@ class Comment
         return $this;
     }
 
-    public function getCreatedAt(): \DateTimeImmutable
+    public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
     }
 }
