@@ -3,7 +3,6 @@
 namespace App\Controller\Api;
 
 use App\Entity\Comment;
-use App\Entity\Post;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -14,47 +13,19 @@ use Symfony\Component\Routing\Attribute\Route;
 class CommentController extends AbstractController
 {
     #[Route('/api/comments', methods: ['GET', 'HEAD'])]
-    public function index(EntityManagerInterface $entityManager, #[MapQueryParameter] string $url): JsonResponse
+    public function index(EntityManagerInterface $entityManager, #[MapQueryParameter] string $postUrl): JsonResponse
     {
-        $comments = $entityManager->getRepository(Comment::class)->findByPostUrl($url);
+        $comments = $entityManager->getRepository(Comment::class)->findByPostUrl($postUrl);
 
-        $data = [];
-        foreach ($comments as $comment) {
-            $data[] = [
-                'name' => $comment->getName(),
-                'email' => $comment->getEmail(),
-                'comment' => $comment->getComment(),
-                'createdAt' => $comment->getCreatedAt(),
-            ];
-        }
-
-        return $this->json($data);
+        return $this->json($comments);
     }
 
     #[Route('/api/comments', methods: ['POST'])]
-    public function create(
-        EntityManagerInterface       $entityManager,
-        #[MapQueryParameter] string  $url,
-        #[MapRequestPayload] Comment $comment
-    ): JsonResponse {
-        $post = $this->getPost($entityManager, $url);
-        $post->addComment($comment);
-
+    public function create(EntityManagerInterface $entityManager, #[MapRequestPayload] Comment $comment): JsonResponse
+    {
         $entityManager->persist($comment);
         $entityManager->flush();
 
-        return $this->json(['success' => true]);
-    }
-
-    private function getPost(EntityManagerInterface $entityManager, string $url): ?Post
-    {
-        $post = $entityManager->getRepository(Post::class)->findOneByUrl($url);
-        if (!$post) {
-            $post = new Post();
-            $post->setUrl($url);
-            $entityManager->persist($post);
-        }
-
-        return $post;
+        return $this->json($comment);
     }
 }
