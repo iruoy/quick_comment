@@ -37,7 +37,6 @@ class Comment
         #[ORM\Column(type: Types::TEXT)]
         private ?string $comment = null,
         ){
-            
         $this->createdAt = new \DateTimeImmutable();
     }
 
