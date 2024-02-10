@@ -10,16 +10,16 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 class Comment
 {
+
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private readonly int $id;
     
     #[ORM\Column]
     private readonly \DateTimeImmutable $createdAt;
 
     public function __construct(
-        #[ORM\Id]
-        #[ORM\GeneratedValue]
-        #[ORM\Column]
-        private readonly int $id,
-    
         #[Assert\NotBlank]
         #[Assert\Length(max: 255)]
         #[ORM\Column(length: 255)]
