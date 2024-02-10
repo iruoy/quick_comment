@@ -10,7 +10,6 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 class Comment
 {
-
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
