@@ -46,7 +46,7 @@ class CommentController extends AbstractController
         return $this->json(['success' => true]);
     }
 
-    public function getPost(EntityManagerInterface $entityManager, string $url): ?Post
+    private function getPost(EntityManagerInterface $entityManager, string $url): ?Post
     {
         $post = $entityManager->getRepository(Post::class)->findOneByUrl($url);
         if (!$post) {
