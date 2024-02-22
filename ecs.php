@@ -20,9 +20,9 @@ return ECSConfig::configure()
     ->withPreparedSets(
         psr12: true,
         common: true,
+        symplify: true,
         strict: true,
         cleanCode: true,
-        symplify: true,
     )
     ->withSkip([
         ArrayOpenerAndCloserNewlineFixer::class,
