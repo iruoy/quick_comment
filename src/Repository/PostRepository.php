@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Entity\Post;
@@ -21,8 +23,9 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
-    public function findOneByUrl($url): ?Post
+    public function findOneByUrl(string $url): ?Post
     {
+        /** @var ?Post */
         return $this->createQueryBuilder('p')
             ->andWhere('p.url = :url')
             ->setParameter('url', $url)

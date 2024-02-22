@@ -3,8 +3,10 @@
 declare(strict_types=1);
 
 use PhpCsFixer\Fixer\Phpdoc\PhpdocToCommentFixer;
+use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayListItemNewlineFixer;
 use Symplify\CodingStandard\Fixer\ArrayNotation\ArrayOpenerAndCloserNewlineFixer;
 use Symplify\CodingStandard\Fixer\ArrayNotation\StandaloneLineInMultilineArrayFixer;
+use Symplify\CodingStandard\Fixer\Spacing\MethodChainingNewlineFixer;
 use Symplify\EasyCodingStandard\Config\ECSConfig;
 
 return ECSConfig::configure()
@@ -25,7 +27,9 @@ return ECSConfig::configure()
         cleanCode: true,
     )
     ->withSkip([
+        ArrayListItemNewlineFixer::class,
         ArrayOpenerAndCloserNewlineFixer::class,
+        MethodChainingNewlineFixer::class,
         PhpdocToCommentFixer::class,
         StandaloneLineInMultilineArrayFixer::class,
     ])

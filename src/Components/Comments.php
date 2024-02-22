@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Components;
 
 use App\Entity\Comment;
@@ -18,8 +20,9 @@ class Comments extends AbstractController
     #[LiveProp(writable: true, url: true)]
     public string $url = '';
 
-    public function __construct(private readonly CommentRepository $commentRepository)
-    {
+    public function __construct(
+        private readonly CommentRepository $commentRepository
+    ) {
     }
 
     /**

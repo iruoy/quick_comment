@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Components;
 
 use App\Entity\Comment;
@@ -52,7 +54,7 @@ class CommentForm extends AbstractController
     private function getPost(EntityManagerInterface $entityManager): Post
     {
         $post = $entityManager->getRepository(Post::class)->findOneByUrl($this->url);
-        if (!$post) {
+        if (! $post instanceof Post) {
             $post = new Post();
             $post->setUrl($this->url);
             $entityManager->persist($post);

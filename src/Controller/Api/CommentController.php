@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Controller\Api;
 
 use App\Entity\Comment;
@@ -33,8 +35,8 @@ class CommentController extends AbstractController
 
     #[Route('/api/comments', methods: ['POST'])]
     public function create(
-        EntityManagerInterface       $entityManager,
-        #[MapQueryParameter] string  $url,
+        EntityManagerInterface $entityManager,
+        #[MapQueryParameter] string $url,
         #[MapRequestPayload] Comment $comment
     ): JsonResponse {
         $post = $this->getPost($entityManager, $url);
@@ -46,10 +48,10 @@ class CommentController extends AbstractController
         return $this->json(['success' => true]);
     }
 
-    private function getPost(EntityManagerInterface $entityManager, string $url): ?Post
+    private function getPost(EntityManagerInterface $entityManager, string $url): Post
     {
         $post = $entityManager->getRepository(Post::class)->findOneByUrl($url);
-        if (!$post) {
+        if (! $post instanceof Post) {
             $post = new Post();
             $post->setUrl($url);
             $entityManager->persist($post);
