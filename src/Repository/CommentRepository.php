@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Entity\Comment;
@@ -16,16 +18,17 @@ use Doctrine\Persistence\ManagerRegistry;
  */
 class CommentRepository extends ServiceEntityRepository
 {
-    public function __construct(ManagerRegistry $registry)
+    public function __construct(ManagerRegistry $managerRegistry)
     {
-        parent::__construct($registry, Comment::class);
+        parent::__construct($managerRegistry, Comment::class);
     }
 
     /**
-     * @return Comment[] Returns an array of Comment objects
+     * @return Comment[]
      */
     public function findByPostUrl(string $postUrl): array
     {
+        /** @var Comment[] */
         return $this->createQueryBuilder('c')
             ->andWhere('c.postUrl = :postUrl')
             ->setParameter('postUrl', $postUrl)
