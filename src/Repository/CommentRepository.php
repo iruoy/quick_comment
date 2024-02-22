@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Entity\Comment;
@@ -22,10 +24,11 @@ class CommentRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return Comment[] Returns an array of Comment objects
+     * @return Comment[]
      */
     public function findByPostUrl(string $postUrl): array
     {
+        /** @var Comment[] */
         return $this->createQueryBuilder('c')
             ->leftJoin('c.post', 'p')
             ->andWhere('p.url = :postUrl')

@@ -26,8 +26,20 @@
             "migrations/.gitignore"
         ]
     },
+    "phpstan/phpstan": {
+        "version": "1.10",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.0",
+            "ref": "5e490cc197fb6bb1ae22e5abbc531ddc633b6767"
+        },
+        "files": [
+            "phpstan.dist.neon"
+        ]
+    },
     "phpunit/phpunit": {
-        "version": "9.6",
+        "version": "11.0",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -46,7 +58,7 @@
             "repo": "github.com/symfony/recipes",
             "branch": "main",
             "version": "6.4",
-            "ref": "4ff49f66191ce9356098e588684c27b935958b33"
+            "ref": "6c28c471640cc2c6e60812ebcb961c526ef8997f"
         },
         "files": [
             "assets/app.js",
@@ -123,7 +135,7 @@
         ]
     },
     "symfony/maker-bundle": {
-        "version": "1.54",
+        "version": "1.55",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -209,7 +221,7 @@
         ]
     },
     "symfony/stimulus-bundle": {
-        "version": "2.14",
+        "version": "2.15",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -249,7 +261,7 @@
         ]
     },
     "symfony/ux-live-component": {
-        "version": "2.14",
+        "version": "2.15",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
@@ -261,10 +273,10 @@
         ]
     },
     "symfony/ux-turbo": {
-        "version": "v2.14.2"
+        "version": "v2.15.0"
     },
     "symfony/ux-twig-component": {
-        "version": "2.14",
+        "version": "2.15",
         "recipe": {
             "repo": "github.com/symfony/recipes",
             "branch": "main",
