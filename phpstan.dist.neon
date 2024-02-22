@@ -2,6 +2,9 @@ parameters:
     level: max
     paths:
         - config/
+        - migrations/
         - public/
         - src/
+        - templates/
+        - tests/
     checkGenericClassInNonGenericObjectType: false

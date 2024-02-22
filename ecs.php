@@ -12,8 +12,11 @@ use Symplify\EasyCodingStandard\Config\ECSConfig;
 return ECSConfig::configure()
     ->withPaths([
         __DIR__ . '/config',
+        __DIR__ . '/migrations',
         __DIR__ . '/public',
         __DIR__ . '/src',
+        __DIR__ . '/templates',
+        __DIR__ . '/tests',
     ])
     ->withPhpCsFixerSets(
         php83Migration: true,
